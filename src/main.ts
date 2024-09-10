@@ -7,7 +7,7 @@ async function bootstrap() {
 
   // Swagger setup
   const config = new DocumentBuilder()
-    .setTitle('User API')
+    .setTitle('API')
     .setDescription('API for managing users')
     .setVersion('1.0')
     .build();

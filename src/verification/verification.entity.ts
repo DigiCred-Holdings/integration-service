@@ -6,7 +6,7 @@ import {
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 
-@Entity()
+@Entity('verification')
 export class Verification {
   @ApiProperty({ description: 'The unique identifier of the verification' })
   @PrimaryGeneratedColumn()
