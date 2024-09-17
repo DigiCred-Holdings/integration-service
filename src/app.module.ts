@@ -5,6 +5,7 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { VerificationModule } from './verification/verification.module';
+import { MicroserviceModule } from './microservice/microservice.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { VerificationModule } from './verification/verification.module';
     }),
     UserModule,
     VerificationModule,
+    MicroserviceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
