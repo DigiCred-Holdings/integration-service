@@ -23,8 +23,15 @@ export class UserController {
 
   @Post('create')
   @ApiOperation({ summary: 'Create a new user' })
-  async createUser(@Body() createUserDto: CreateUserDto) {
+  async createUser(
+    @Body()
+    createUserDto: {
+      workflowID: string;
+      actionID: string;
+      formData: CreateUserDto;
+    },
+  ) {
     console.log('createUserDtocreateUserDtocreateUserDto');
-    return await this.userService.createUser(createUserDto);
+    return await this.userService.createUser(createUserDto.formData);
   }
 }
