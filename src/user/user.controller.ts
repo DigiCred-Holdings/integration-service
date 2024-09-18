@@ -1,7 +1,15 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Param,
+  Patch,
+} from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiParam } from '@nestjs/swagger';
 import { UserService } from './user.service';
-import { CreateUserDto } from './user.dto';
+import { UserDto } from './user.dto';
 
 @ApiTags('User')
 @Controller('user')
@@ -28,10 +36,26 @@ export class UserController {
     createUserDto: {
       workflowID: string;
       actionID: string;
-      formData: CreateUserDto;
+      formData: UserDto;
     },
   ) {
-    console.log('createUserDtocreateUserDtocreateUserDto');
     return await this.userService.createUser(createUserDto.formData);
+  }
+
+  @Patch(':userId')
+  @ApiOperation({ summary: 'Update a user by ID' })
+  @ApiParam({ name: 'userId', description: 'The ID of the user to update' })
+  async updateUser(
+    @Param('userId') userId: string,
+    @Body() updateUserDto: UserDto,
+  ) {
+    return await this.userService.updateUser(userId, updateUserDto);
+  }
+
+  @Delete(':userId')
+  @ApiOperation({ summary: 'Delete a user by ID' })
+  @ApiParam({ name: 'userId', description: 'The ID of the user to delete' })
+  async deleteUser(@Param('userId') userId: string) {
+    return await this.userService.deleteUser(userId);
   }
 }
